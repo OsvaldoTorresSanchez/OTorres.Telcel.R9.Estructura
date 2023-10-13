@@ -1,0 +1,16 @@
+EmpleadoID |	Nombre			| DepartamentoID| PuestoID
+1          | Alfredo Pérez Torres	| 1		| 1
+2	   | Fernando Gonzalez Jiménez	| 1		| 2
+3	   | Luis Martinez Pérez	| 1		| 3
+4	   | José Robles Torres		| 2		| 2
+5	   | Karla Garcia Higareda	| 2		| 3
+6	   | Lorena Duran Castro	| 2		| 4
+7	   | Jessica Ramírez Estrada	| 3		| 3
+8	   | Jimena Zarate Vélez	| 3		| 4
+9	   | Daniel Garcia Buendía	| 3		| 5
+10	   | Rubén Núñez López		| 4		| 1
+11	   | Jorge Franco Quiroz	| 4		| 3
+12	   | Gloria Velazquez Pérez	| 4		| 5
+13	   | Wendy Salgado Olguín	| 5		| 2
+14	   | Arturo Frías Robles	| 5		| 4
+15	   | Francisco Torres Duran	| 5		| 1

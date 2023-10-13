@@ -1,0 +1,82 @@
+﻿@model Telcel.R9.Estructura.Negocio.Empleado
+@{
+    ViewBag.Title = "UploadData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Carga masiva</h2>
+
+<div class="container">
+
+    @using (Html.BeginForm("UploadData", "Empleados", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-3 form-control" style="width:550px; height:75px;">
+                <label>Archivo</label>
+                <input type="file" id="fulTxt" name="cargaMasiva" class=" form-control"  />
+            </div>
+            @Html.HiddenFor(model => model.Empleados)
+            @if (Session["ListVehiculos"] == null)
+            {
+                <div class=" col-md-2">
+                    <button type="submit" class="btn btn-info bi bi-eye "> Visualizar</button>
+
+                </div>
+
+            }
+            else
+            {
+
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success bi bi-save "> Cargar</button>
+
+                </div>
+            }
+        </div>
+        <br />
+
+        <br />
+
+
+    }
+
+    @if (Model.Empleados != null)
+    {
+
+        <div class="row">
+            <div class="col-md-11">
+                <div>
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>IdPuesto</th>
+                                <th>IdDepartamento</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Telcel.R9.Estructura.Negocio.Empleado empleado in Model.Empleados)
+                            {
+
+                                <tr>
+                                    <td>@empleado.Nombre</td>
+                                    <td>@empleado.IdPuesto</td>
+                                    <td>@empleado.IdDepartamento</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+</div>
+
+
+
+

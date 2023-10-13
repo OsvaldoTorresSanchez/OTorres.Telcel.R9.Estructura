@@ -1,0 +1,61 @@
+﻿@model Telcel.R9.Estructura.Negocio.Empleado
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Alumnos</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Ingrese los datos de los empleados</h2>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Form", "Empleados", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.IdEmpleado, new { @class = "visually-hidden-focusable" })
+                @Html.TextBoxFor(model => model.IdEmpleado, new { @class = "form-control visually-hidden-focusable", @id = "txtIdAlumno" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Nombre)
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = " Nombre", @onkeypress = "return ValidarSoloLetras(event,'lblNombre')", @id = "txtNombre" })
+                @Html.ValidationMessageFor(model => model.Nombre, null, new { @class = "text-danger", @id = "lblNombre" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Puesto.IdPuesto)
+                @Html.DropDownListFor(model => model.Puesto.IdPuesto, new SelectList(Model.Puesto.Puestos, "IdPuesto", "Descripcion"), "Seleccione una opción", new { @class = "form-control", @id = "txtIdEmpresa" })
+                 @Html.ValidationMessageFor(model => model.IdPuesto, null, new { @class = "text-danger", @id = "lblApellidoPaterno" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.Departamento.IdDepartamento)
+                @Html.DropDownListFor(model => model.Departamento.IdDepartamento, new SelectList(Model.Departamento.Departamentos, "IdDepartamento", "Descripcion"), "Seleccione una opción", new { @class = "form-control", @id = "txtIdEmpresa" })
+               @Html.ValidationMessageFor(model => model.IdDepartamento, null, new { @class = "text-danger", @id = "lblApellidoMaterno" })
+            </div>
+        </div>
+
+
+        <br />
+        <div class="row">
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-success"> Guardar</button>
+            </div>
+            <div class="col-md-1">
+                @Html.ActionLink("Cancelar", "GetAll", "Empleados", new { @class = "btn btn-danger" })
+            </div>
+        </div>
+    }
+</div>

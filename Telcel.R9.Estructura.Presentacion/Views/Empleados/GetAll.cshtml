@@ -1,0 +1,123 @@
+﻿@model Telcel.R9.Estructura.Negocio.Empleado
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Empleado</h2>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Seleccion un registro para agregar o editar su informacion </h5>
+            <hr />
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <div class="col-md-12 ">
+            <button type="button" id="btn-1" onclick="mostrarBoton1()" class="btn btn-info bi bi-search"> Busqueda</button>
+            @Html.ActionLink(" Carga masiva ", "UploadData", "Vehiculo", new { @class = "btn btn-primary bi bi-database-fill-up" })
+
+        </div>
+    </div>
+    <br />
+    @using (Html.BeginForm("GetAll", "Empleados", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="row">
+            <div class="col-md-11">
+
+                @Html.LabelFor(model => model.Nombre, new { @id = "lbNombre", @style = "display: none;" })
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", placeholder = " Nombre", @id = "txtNombre", @style = "display: none;" })
+                <button type="submit" class="btn btn-info bi bi-search " id="btnCargar" style="display: none"> </button>
+            </div>
+        </div>
+        <br />
+
+    }
+    <div class="row">
+        <div class="col-md- offset-11 ">
+            @Html.ActionLink(" ", "Form", "Empleados", new { @class = "btn btn-success bi bi-person-plus-fill" })
+
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Empleados != null)
+    {
+
+        <div class="row">
+            <div class="col-md-11">
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Editar</th>
+                                <th class="visually-hidden-focusable">IdEmpleado</th>
+                                <th>Nombre</th>
+                                <th>Descripcion</th>
+                                <th>Descripcion</th>
+                                <th>Eliminar</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Telcel.R9.Estructura.Negocio.Empleado empleado in Model.Empleados)
+                            {
+                                <tr>
+                                    <td>
+                                        <a class="btn btn-warning glyphicon glyphicon-edit bi bi-pencil-square "
+                                           href="@Url.Action("Form", "Empleados", new {IdEmpleado = empleado.IdEmpleado})" );">
+
+                                        </a>
+                                    </td>
+                                    <td class="visually-hidden-focusable">@empleado.IdEmpleado</td>
+                                    <td>@empleado.Nombre</td>
+                                    <td>@empleado.Puesto.Descripcion</td>
+                                    <td>@empleado.Departamento.Descripcion</td>
+
+                                    <td>
+                                        <a class="btn btn-danger bi bi-trash"
+                                           href="@Url.Action("Delete", "Empleados", new {IdEmpleado = empleado.IdEmpleado})"
+                                           onclick="return confirm('estas seguro que deseas eliminar este registro? ');">
+
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger " role="alert">
+            No encontraron Usuario registrados. Error: @ViewBag.Message;
+        </div>
+    }
+
+</div>
+
+<script type="text/javascript">
+    var txt_1 = document.getElementById('txtNombre');
+    var lb_1 = document.getElementById('lbNombre');
+    var btn_1 = document.getElementById('btn-1');
+    var btn_2 = document.getElementById('btnCargar');
+
+    function mostrarBoton1() {
+        txt_1.style.display = 'inline';
+        lb_1.style.display = 'inline';
+        //     lbl_1.style.display = 'inline';
+        btn_2.style.display = 'inline';
+
+    }
+</script>
